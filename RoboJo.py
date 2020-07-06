@@ -3,6 +3,7 @@ import os
 from datetime import date
 import random
 
+import asyncio
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -43,6 +44,14 @@ async def on_message(message):
         await message.channel.send('**Happy Birthday!** 🎈🎉')
 
     await bot.process_commands(message)
+
+    if len(message.attachments) > 0 and message.channel.id == 722772700732456961:
+        try:
+            await message.add_reaction(discord.utils.get(message.guild.emojis, name='Updoot'))
+            await message.add_reaction(discord.utils.get(message.guild.emojis, name='Downdoot'))
+        except Exception as e:
+            print (e)
+        #await message.add_reaction(':grinning:')
 
 
 """
