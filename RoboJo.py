@@ -39,19 +39,32 @@ async def on_message(message):
         response = '***nice!***'
         await message.channel.send(response)
 
+    #smh
+    if 'smh' in message.content.lower():
+        try:
+            emoji = '<a:smh:766672187728986122>'
+            await message.channel.send(emoji)
+            #await message.add_reaction(discord.utils.get(message.guild.emojis, name='smh'))
+        except Exception as e:
+            print (e)
+
     #happy birthday
     if 'happy birthday' in message.content.lower() or 'happy birfday' in message.content.lower():
         await message.channel.send('**Happy Birthday!** 🎈🎉')
 
     await bot.process_commands(message)
 
-    if len(message.attachments) > 0 and message.channel.id == 722772700732456961:
-        try:
-            await message.add_reaction(discord.utils.get(message.guild.emojis, name='Updoot'))
-            await message.add_reaction(discord.utils.get(message.guild.emojis, name='Downdoot'))
-        except Exception as e:
-            print (e)
-        #await message.add_reaction(':grinning:')
+    if len(message.attachments) > 0:
+        if ((message.guild.id == 722772511460163615 and message.channel.id == 722772700732456961) or message.guild.id != 722772511460163615):
+
+            try:
+                upvote = '<:Updoot:722777693980196904>'
+                downvote = '<:Downdoot:722779863970218047>'
+                await message.add_reaction(upvote)
+                await message.add_reaction(downvote)
+            except Exception as e:
+                print (e)
+            #await message.add_reaction(':grinning:')
 
 
 """
